@@ -28,12 +28,12 @@
 	<mvc:resources location="/js/" mapping="/js/**"></mvc:resources>
 	<mvc:resources location="/css/" mapping="/css/**"></mvc:resources>
 	<mvc:resources location="/images/" mapping="/images/**"></mvc:resources>
-	
+
 	<!-- 配置拦截器 -->
 	<mvc:interceptors>
 		<!-- 配置全局拦截器，拦截所有请求 -->
-		<!-- <bean class="cn.ganlixin.interceptor.MyInterceptor"></bean>	 -->
-		
+		<!-- <bean class="cn.ganlixin.interceptor.MyInterceptor"></bean> -->
+
 		<!-- 为指定的请求路径设置拦截器 -->
 		<mvc:interceptor>
 			<!-- 配置拦截器匹配的请求路径 -->
@@ -41,5 +41,16 @@
 			<bean class="cn.ganlixin.interceptor.MyInterceptor"></bean>
 		</mvc:interceptor>
 	</mvc:interceptors>
-	
+
+	<!-- 配置文件上传的multipartResolver -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- 上传文件的编码方式 -->
+		<property name="defaultEncoding" value="utf-8"></property>
+		<!-- 上传文件大小，单位为KB -->
+		<property name="maxUploadSize" value="1024000"></property>
+		<!-- 上传的文件临时保存路径 -->
+		<property name="uploadTempDir" value="upload/tmp"></property>
+	</bean>
+
 </beans>
