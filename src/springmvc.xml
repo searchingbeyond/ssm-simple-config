@@ -52,5 +52,19 @@
 		<!-- 上传的文件临时保存路径 -->
 		<property name="uploadTempDir" value="upload/tmp"></property>
 	</bean>
+	
+	<!-- 配置异常处理Resolver -->
+	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+		<property name="defaultErrorView" value="error"></property>
+		<property name="exceptionMappings">
+			<props>
+				<prop key="java.lang.IllegalAccessException">error</prop>
+				<prop key="cn.ganlixin.exception.UnauthorizeException">unauthorized</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<!-- 使用自定义的ExceptionHandler来处理解析请求中出现的异常 -->
+	<bean class="cn.ganlixin.exception.MyExceptionHandler"></bean>
 
 </beans>
